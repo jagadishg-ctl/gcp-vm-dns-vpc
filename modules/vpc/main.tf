@@ -36,3 +36,18 @@ resource "google_compute_firewall" "allow_http" {
   target_tags   = ["http-server"]
 }
 
+
+resource "google_compute_firewall" "allow_ssh" {
+  name    = "allow-ssh"
+  project = var.project_id
+  network = google_compute_network.shared_vpc.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
+
+
