@@ -5,11 +5,15 @@ resource "google_compute_instance" "vm" {
   zone         = var.zone
   machine_type = var.machine_type
 
-  boot_disk { initialize_params { image = "debian-cloud/debian-11" } }
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
 
   network_interface {
-    subnetwork   = var.subnet    subnetwork   = var.subnet_self_link
-    access_config {}  # ephemeral external IP
+    subnetwork = var.subnet_self_link
+    access_config {}  # allocate ephemeral external IP
   }
 
   service_account {
@@ -36,3 +40,5 @@ resource "google_compute_instance" "vm" {
     </html>
     HTML
   EOT
+}
+
