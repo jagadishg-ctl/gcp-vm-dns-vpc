@@ -1,8 +1,5 @@
-output "vm_public_ip" {
-value = module.vm.public_ip
-}
 
-
-output "dns_record" {
-value = module.dns.dns_record
+output "vm_external_ip" {
+  value       = module.vm.external_ip
+  description = "Public IP of the sample web VM"
 }
