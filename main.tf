@@ -1,4 +1,5 @@
 
+# Enable Compute API
 resource "google_project_service" "compute" {
   project            = var.project_id
   service            = "compute.googleapis.com"
@@ -9,7 +10,7 @@ module "vpc" {
   source         = "./modules/vpc"
   project_id     = var.project_id
   region         = var.region
-  network_name   = var.network  network_name   = var.network_name
+  network_name   = var.network_name
   subnet_a_name  = var.subnet_a_name
   subnet_a_cidr  = var.subnet_a_cidr
   subnet_b_name  = var.subnet_b_name
@@ -19,7 +20,7 @@ module "vpc" {
 }
 
 module "iam" {
-  source                       = "./modules/iam"
+  source                       = "./modules/iam"   # <-- this line is mandatory
   project_id                   = var.project_id
   service_account_id           = var.service_account_id
   service_account_display_name = var.service_account_display_name
@@ -33,6 +34,7 @@ module "vm" {
   vm_name               = var.vm_name
   machine_type          = var.machine_type
   subnet_self_link      = module.vpc.subnet_a_self_link
-  service_account_email = module.iam.service_account_email
+  service_account_email = module.iam.service_account  service_account_email = module.iam.service_account_email
 
   depends_on = [module.vpc, google_project_service.compute]
+
