@@ -9,7 +9,7 @@ variable "region" {
 }
 
 variable "zone" {
-   type = string
+  type = string
 }
 
 # Impersonation SA
@@ -54,4 +54,5 @@ variable "vm_name" {
 
 variable "machine_type" {
   type = string
+}
 
