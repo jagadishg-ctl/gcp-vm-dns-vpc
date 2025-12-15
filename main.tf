@@ -26,6 +26,7 @@ module "iam" {
   service_account_display_name = var.service_account_display_name
 }
 
+
 module "vm" {
   source                = "./modules/vm"
   project_id            = var.project_id
@@ -34,7 +35,7 @@ module "vm" {
   vm_name               = var.vm_name
   machine_type          = var.machine_type
   subnet_self_link      = module.vpc.subnet_a_self_link
-  service_account_email = module.iam.service_account  service_account_email = module.iam.service_account_email
+  service_account_email = module.iam.service_account_email
 
   depends_on = [module.vpc, google_project_service.compute]
-
+}
