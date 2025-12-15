@@ -1,16 +1,16 @@
-terraform {
-required_version = ">= 1.6.0"
-required_providers {
-google = {
-source = "hashicorp/google"
-version = "~> 5.0"
-}
-}
-}
 
+terraform {
+  required_version = ">= 1.6.0"
+  required_providers {
+    google = {
+           source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+  }
+}
 
 provider "google" {
-project = "terraform-project-475116"
-region = "us-central1"
-impersonate_service_account = "galaxy@terraform-project-475116.iam.gserviceaccount.com"
-}
+  project                     = var.project_id
+  region                      = var.region
+  zone                        = var.zone
+  impersonate_service_account = var.impersonate_service_account
