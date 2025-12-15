@@ -6,7 +6,7 @@ resource "google_compute_network" "shared_vpc" {
   routing_mode            = "GLOBAL"
 }
 
-resource "googleresource "google_compute_subnetwork" "subnet_a" {
+resource "google_compute_subnetwork" "subnet_a" {
   name          = var.subnet_a_name
   project       = var.project_id
   region        = var.region
@@ -25,7 +25,7 @@ resource "google_compute_subnetwork" "subnet_b" {
 resource "google_compute_firewall" "allow_http" {
   name    = "allow-http"
   project = var.project_id
-  network = google_compute_network.shared_vpc.name
+  network = google_compute_network.shared_vpc  network = google_compute_network.shared_vpc.name
 
   allow {
     protocol = "tcp"
@@ -34,3 +34,4 @@ resource "google_compute_firewall" "allow_http" {
 
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["http-server"]
+
