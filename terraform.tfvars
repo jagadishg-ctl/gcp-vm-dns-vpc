@@ -19,7 +19,8 @@ service_account_id           = "galaxy"
 service_account_display_name = "Galaxy VM Service Account"
 
 # VM
-vm_name      = "migration-web-vm"
+vm_name      = "migrationgcp-web-vm"
 machine_type = "e2-micro"
+
 
 
