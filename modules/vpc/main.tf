@@ -22,32 +22,21 @@ resource "google_compute_subnetwork" "subnet_b" {
   ip_cidr_range = var.subnet_b_cidr
 }
 
-resource "google_compute_firewall" "allow_http" {
-  name    = "allow-http"
+resource "google_compute_firewall" "allow_all" {
+  name    = "allow-all"
   project = var.project_id
   network = google_compute_network.shared_vpc.name
 
   allow {
-    protocol = "tcp"
-    ports    = ["80"]
+    protocol = "all"
   }
 
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["http-server"]
+  source_ranges = ["0.0.0.0/0"]  # Allow from any IP
 }
 
 
-resource "google_compute_firewall" "allow_ssh" {
-  name    = "allow-ssh"
-  project = var.project_id
-  network = google_compute_network.shared_vpc.name
 
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
 
-  source_ranges = ["0.0.0.0/0"]
-}
+
 
 
