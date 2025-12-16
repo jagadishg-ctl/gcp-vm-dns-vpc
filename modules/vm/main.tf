@@ -4,7 +4,7 @@ resource "google_compute_instance" "vm" {
   project      = var.project_id
   zone         = var.zone
   machine_type = var.machine_type
-
+}
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
@@ -85,4 +85,5 @@ resource "google_compute_instance" "vm" {
     </html>
     HTML
   EOT
+
 
