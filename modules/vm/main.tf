@@ -36,10 +36,10 @@ resource "google_compute_instance" "vm" {
     done
     
     # Install & start Apache (idempotent)
-    apt-get update -y || true
-    apt-get install -y apache2 || true
-    systemctl enable apache2
-    systemctl restart apache2
+    sudo apt-get update -y || true
+    sudo apt-get install -y apache2 || true
+    sudo systemctl enable apache2
+    sudo systemctl restart apache2
     
     # Sample page
     cat > /var/www/html/index.html <<EOF
@@ -53,7 +53,8 @@ resource "google_compute_instance" "vm" {
     </html>
 EOF
     
-    chown root:root /var/www/html/index.html
-    chmod 0644 /var/www/html/index.html
+    sudo chown root:root /var/www/html/index.html
+    sudo chmod 0644 /var/www/html/index.html
   EOT
 }
+
