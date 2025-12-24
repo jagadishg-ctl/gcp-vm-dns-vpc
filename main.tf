@@ -6,6 +6,13 @@ resource "google_project_service" "compute" {
   disable_on_destroy = false
 }
 
+# Enable DNS API
+resource "google_project_service" "dns" {
+  project            = var.project_id
+  service            = "dns.googleapis.com"
+  disable_on_destroy = false
+}
+
 module "vpc" {
   source         = "./modules/vpc"
   project_id     = var.project_id
@@ -38,4 +45,15 @@ module "vm" {
   service_account_email = module.iam.service_account_email
 
   depends_on = [module.vpc, google_project_service.compute]
+}
+
+# DNS Configuration - Creates DNS records for the VM
+module "dns" {
+  source            = "./modules/dns"
+  project_id        = var.project_id
+  managed_zone_name = var.managed_zone_name
+  dns_name          = var.dns_name
+  vm_public_ip      = module.vm.external_ip
+
+  depends_on = [google_project_service.dns, module.vm]
 }

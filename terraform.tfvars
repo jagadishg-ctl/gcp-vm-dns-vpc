@@ -22,5 +22,11 @@ service_account_display_name = "Galaxy VM Service Account"
 vm_name      = "migrationgcp-web-vm"
 machine_type = "e2-micro"
 
+# DNS Configuration
+managed_zone_name = "lumenmigrationfactory-com"
+dns_name          = "lumenmigrationfactory.com."
+
+
+
 
 

@@ -56,3 +56,13 @@ variable "machine_type" {
   type = string
 }
 
+# DNS Configuration
+variable "managed_zone_name" {
+  type        = string
+  description = "Name of the Cloud DNS managed zone"
+}
+
+variable "dns_name" {
+  type        = string
+  description = "DNS name for the A record (e.g., 'vm.example.com.')"
+}
